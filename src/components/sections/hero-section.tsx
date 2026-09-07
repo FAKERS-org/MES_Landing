@@ -1,29 +1,32 @@
 import React from "react";
 
-interface HeroSectionProps {
-  locale?: string;
+interface HeroT {
+  title1: string;
+  title2: string;
+  description: string;
+  cta: string;
 }
 
-export default function HeroSection({ locale }: HeroSectionProps) {
+export default function HeroSection({
+  locale,
+  t,
+}: {
+  locale?: string;
+  t: HeroT;
+}) {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-transparent">
-      <div className="flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-12 py-16 w-full max-w-7xl mx-auto">
+    <div className="w-full bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <div className="max-w-5xl mx-auto flex flex-col-reverse md:flex-row items-center justify-between px-4 md:px-12 py-16">
         {/* Left Side Content */}
         <div className="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-800 mb-4 leading-tight">
-            សាកល្បងប្រព័ន្ធចុះ
+            {t.title1}
             <br />
-            ឈ្មោះរៀនគ្រឿង
-            <br />
-            ដោយសេរី...!
+            {t.title2}
           </h1>
-          <p className="text-gray-600 mb-6 leading-relaxed">
-            ប្រព័ន្ធប្រមូលសាកល្បង ជាគេហទំព័រជួយដល់សិស្សានុសិស្ស
-            <br />
-            ដែលចង់ចុះឈ្មោះរៀនចូលផ្ទះល់ទៅកាន់ប្រព័ន្ធចុះឈ្មោះ។
-          </p>
+          <p className="text-gray-600 mb-6 leading-relaxed">{t.description}</p>
           <button className="bg-blue-700 text-white py-2 px-8 rounded-full hover:bg-blue-800 transition-colors">
-            សាកល្បងឥឡូវនេះ
+            {t.cta}
           </button>
         </div>
 
