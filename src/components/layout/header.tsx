@@ -1,3 +1,5 @@
+import React from "react";
+import { useTranslation } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -6,27 +8,20 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Moon, Sun } from "lucide-react";
-import { Locale } from "@/lib/i18n";
 
-interface HeaderProps {
-  locale: Locale;
-  onLocaleChange: (l: Locale) => void;
-  nav: {
-    purpose: string;
-    about: string;
-    contact: string;
+export function Header() {
+  const { lang, setLang, t } = useTranslation();
+
+  const localeLabels = {
+    en: { flag: "🇺🇸", label: "English" },
+    kh: { flag: "🇰🇭", label: "Khmer" },
   };
-}
 
-const localeLabels: Record<Locale, { flag: string; label: string }> = {
-  en: { flag: "🇺🇸", label: "English" },
-  kh: { flag: "🇰🇭", label: "Khmer" },
-};
-
-export function Header({ locale, onLocaleChange, nav }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between px-4 md:px-8">
+<header
+  className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+>
+  <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-8 px-4 md:px-8">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2">
           <img
@@ -42,19 +37,19 @@ export function Header({ locale, onLocaleChange, nav }: HeaderProps) {
             href="#purpose"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
-            {nav.purpose}
+            {t("nav.purpose")}
           </a>
           <a
             href="#who-are-we"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
-            {nav.about}
+            {t("nav.about")}
           </a>
           <a
             href="#contact"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
-            {nav.contact}
+            {t("nav.contact")}
           </a>
         </nav>
 
@@ -64,15 +59,15 @@ export function Header({ locale, onLocaleChange, nav }: HeaderProps) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="gap-2">
-                <span className="text-lg">{localeLabels[locale].flag}</span>
+                <span className="text-lg">{localeLabels[lang].flag}</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {(Object.keys(localeLabels) as Locale[]).map((loc) => (
+              {(Object.keys(localeLabels) as string[]).map((loc) => (
                 <DropdownMenuItem
                   key={loc}
-                  onClick={() => onLocaleChange(loc)}
-                  className={locale === loc ? "bg-accent" : ""}
+                  onClick={() => setLang(loc as "en" | "kh")}
+                  className={lang === loc ? "bg-accent" : ""}
                 >
                   <span className="mr-2">{localeLabels[loc].flag}</span>
                   {localeLabels[loc].label}

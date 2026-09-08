@@ -1,113 +1,106 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { useTranslation } from "@/lib/i18n";
 
-interface FooterT {
-  description: string;
-  contact: string;
-  recommendation: string;
-  commentPlaceholder: string;
-  submit: string;
-  copyright: string;
-}
-
-export default function Footer({ t }: { t: FooterT }) {
-  const year = new Date().getFullYear();
+export function Footer() {
+  const { t } = useTranslation();
 
   return (
-    <footer className="w-full mt-auto flex-shrink-0">
-      <div className="bg-white rounded-t-2xl shadow-md mx-auto overflow-hidden relative px-4 sm:px-8">
-        {/* Background layer image */}
-        <div className="absolute inset-0 w-full h-full z-0">
-          <img
-            src="/footer_images/layer.png"
-            alt=""
-            className="w-full h-full object-cover opacity-30"
-          />
-        </div>
+    <div className="min-h-screen relative overflow-hidden rounded-b-3xl" style={{ backgroundImage: `url(/images/transparent-half-M.png)`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50 opacity-80 rounded-b-3xl" />
+      <div className="absolute inset-0 opacity-30 rounded-b-3xl">
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-200 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-blue-300 rounded-full blur-3xl" />
+      </div>
 
-        <div className="relative z-10 py-8 md:py-12">
-          <div className="flex flex-wrap md:flex-nowrap justify-between gap-8">
-            {/* Left column */}
-            <div className="w-full md:w-1/3">
-              <img
-                src="/footer_images/mock-exam-logo.png"
-                alt="Mock Exam Logo"
-                className="w-[166px] h-auto mb-6"
-              />
-              <p className="text-[#1F3B5F] mb-6 md:mb-16 leading-relaxed text-sm">
-                {t.description}
-              </p>
-              <p className="text-[#1F3B5F] mb-3 text-sm font-medium">
-                {t.contact}
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {["facebook", "telegram", "youtube", "instagram", "tiktok"].map(
-                  (name) => (
-                    <a
-                      key={name}
-                      href="#"
-                      aria-label={name}
-                      className="hover:opacity-80"
-                    >
-                      <img
-                        src={`/footer_images/${name}.png`}
-                        alt={name}
-                        className="w-8 h-8 object-contain"
-                      />
-                    </a>
-                  )
-                )}
-              </div>
-            </div>
-
-            {/* Center illustration */}
-            <div className="w-full md:w-1/3 flex justify-center items-center py-6 md:py-0">
-              <img
-                src="/footer_images/book.png"
-                alt="Document"
-                className="w-[248px] h-auto"
-              />
-            </div>
-
-            {/* Right column */}
-            <div className="w-full md:w-1/3 flex flex-col justify-between md:pl-8">
-              <div className="invisible h-0">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          
+            {/* Left Section - Logo & Info */}
+            <div className="space-y-6">
+              {/* Logo */}
+              <a href="/" className="flex items-center gap-2">
                 <img
-                  src="/footer_images/mock-exam-logo.png"
-                  alt=""
-                  className="w-[166px] h-auto opacity-0"
+                  src="/images/MES-logo-horizontal.png"
+                  alt="MES Logo"
+                  className="h-10 w-auto"
                 />
-              </div>
-              <div className="mt-auto">
-                <p className="text-[#1F3B5F] mb-2 text-sm font-medium">
-                  {t.recommendation}
+              </a>
+
+              <div className="space-y-3">
+                <h3 className="text-gray-700 font-medium">{t("footer.contact")}</h3>
+                
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {t("footer.description")}
                 </p>
-                <div className="relative w-full md:w-auto">
-                  <input
-                    type="text"
-                    placeholder={t.commentPlaceholder}
-                    className="w-full px-4 py-2 pr-16 border border-gray-200 rounded-md focus:outline-none focus:border-blue-400 text-sm"
-                  />
-                  <button className="absolute right-1 top-1 bottom-1 bg-[#0162A3] hover:bg-[#003D7A] text-white px-4 rounded-md text-sm transition-colors">
-                    {t.submit}
-                  </button>
+
+                {/* Social Icons */}
+                <div className="flex gap-3">
+                  <a href="#" className="hover:opacity-80 transition-opacity">
+                    <img src="/images/facebook.png" alt="Facebook" className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="hover:opacity-80 transition-opacity">
+                    <img src="/images/telegram.png" alt="Telegram" className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="hover:opacity-80 transition-opacity">
+                    <img src="/images/youtube.png" alt="YouTube" className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="hover:opacity-80 transition-opacity">
+                    <img src="/images/instagram.png" alt="Instagram" className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="hover:opacity-80 transition-opacity">
+                    <img src="/images/tik-tok.png" alt="TikTok" className="w-5 h-5" />
+                  </a>
                 </div>
               </div>
-              <div className="mt-6 md:mt-auto pt-6 flex justify-end text-sm text-gray-400">
+            </div>
+
+            {/* Center Section - Illustration */}
+            <div className="flex justify-center">
+              <img
+                src="/images/book.png"
+                alt="Book illustration"
+                className="w-48 h-48 object-contain"
+              />
+            </div>
+
+            {/* Right Section - Recommendation */}
+            <div className="space-y-6">
+              <div className="space-y-3">
+                  <label className="text-gray-600 text-sm font-medium">
+                    {t("footer.recommendation")}
+                  </label>
+                <div className="flex gap-2">
+                    <Input 
+                      type="text" 
+                      placeholder={t("footer.commentPlaceholder")}
+                      className="flex-1 bg-white border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                    />
+                    <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6">
+                      {t("footer.submit")}
+                    </Button>
+                </div>
+              </div>
+
+              {/* Version Number */}
+              <div className="flex justify-end">
                 <img
-                  src="/footer_images/2.0.png"
+                  src="/images/version-2.0.png"
                   alt="Version 2.0"
-                  className="w-[137px] h-[55px] object-contain"
+                  className="h-16 w-auto"
                 />
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-300 mt-10" />
-          <div className="text-center text-gray-400 text-sm mt-6">
-            {t.copyright.replace("{year}", String(year))}
+          {/* Footer */}
+          <div className="mt-12 pt-6 border-t border-gray-200">
+            <p className="text-center text-gray-400 text-sm">
+              {t("footer.copyright").replace("{year}", String(new Date().getFullYear()))}
+            </p>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    );
 }
