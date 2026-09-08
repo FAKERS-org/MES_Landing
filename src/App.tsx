@@ -13,13 +13,15 @@ export function App() {
   return (
     <div className={`${fontClass} flex flex-col min-h-screen bg-gray-50`}>
       <Header locale={lang} onLocaleChange={setLang} />
-      <div className="max-w-7xl mx-auto w-full">
-        <HeroSection locale={lang} t={t} />
-        <main className="flex-grow">
-          <KhmerWebsitePage t={t} />
-        </main>
+      <div className="flex-grow">
+        <div className="max-w-7xl mx-auto w-full">
+          <HeroSection locale={lang} t={t} />
+          <main className="flex-grow">
+            <KhmerWebsitePage t={t} />
+          </main>
+          <Footer t={t} fontClass={fontClass} />
+        </div>
       </div>
-      <Footer t={t} fontClass={fontClass} />
     </div>
   );
 }
