@@ -11,7 +11,7 @@ export function App() {
   const fontClass = localeFonts[lang] || "font-sans";
 
   return (
-    <div className={`${fontClass} flex flex-col min-h-screen bg-gray-50`}>
+    <div className={`${fontClass} flex flex-col min-h-screen bg-blue-50`}>
       <Header locale={lang} onLocaleChange={setLang} />
       <div className="flex-grow">
         <div className="max-w-7xl mx-auto w-full">

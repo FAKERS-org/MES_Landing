@@ -6,9 +6,9 @@ export function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-card border-t border-border mt-12 pt-6">
-      <div className="mx-auto max-w-7xl px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+    <footer className="bg-white mt-12 pt-6 rounded-t-2xl">
+      <div className="mx-auto max-w-7xl px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center px-6">
 
           <div className="space-y-6">
             <a href="/" className="flex items-center gap-2">
