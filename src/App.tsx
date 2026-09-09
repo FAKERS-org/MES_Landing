@@ -14,7 +14,7 @@ export function App() {
     <div className={`${fontClass} flex flex-col min-h-screen bg-blue-50`}>
       <Header />
       <div className="flex-grow">
-        <div className="max-w-7xl mx-auto w-full">
+        <div className="max-w-8xl mx-auto w-full">
           <HeroSection />
           <SectionFeature />
           <Footer />
