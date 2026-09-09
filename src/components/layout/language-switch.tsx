@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fontMapping, fontUrls, localeFonts } from "@/lib/fonts";
-import { Locale, getLocaleMessages } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 
 export default function LanguageSwitch({
   locale,
@@ -18,7 +18,7 @@ export default function LanguageSwitch({
   }, [locale]);
 
   useEffect(() => {
-    const fontFamily = fontMapping[current];
+    const fontFamily = fontMapping[current] ?? "Inter, sans-serif";
     const fontUrl = fontUrls[fontFamily];
     if (fontUrl) {
       const fontFace = new FontFace(fontFamily, `url(${fontUrl})`);

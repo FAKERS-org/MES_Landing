@@ -4,6 +4,7 @@ import en from "@/locales/en.json";
 import { LANGUAGE_CONFIG } from "@/config";
 
 export type Lang = "en" | "kh";
+export type Locale = Lang;
 
 export type TranslationKey = keyof typeof en;
 
@@ -21,12 +22,6 @@ export function getInitialLang(): Lang {
   }
   return LANGUAGE_CONFIG.defaultLanguage;
 }
-
-export const LANGUAGE_CONFIG = {
-  storageKey: "lang",
-  defaultLanguage: "kh" as const,
-  supportedLanguages: ["kh", "en"] as const,
-} as const;
 
 export function useTranslation() {
   const ctx = useContext(TranslationContext);

@@ -1,5 +1,4 @@
-import React from "react";
-import { useTranslation } from "@/lib/i18n";
+import { useTranslation, type Lang } from "@/lib/i18n";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,13 +8,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Moon, Sun } from "lucide-react";
 
+const localeLabels: Record<Lang, { flag: string; label: string }> = {
+  en: { flag: "🇺🇸", label: "English" },
+  kh: { flag: "🇰🇭", label: "Khmer" },
+};
+
 export function Header() {
   const { lang, setLang, t } = useTranslation();
-
-  const localeLabels = {
-    en: { flag: "🇺🇸", label: "English" },
-    kh: { flag: "🇰🇭", label: "Khmer" },
-  };
 
   return (
 <header
@@ -63,10 +62,10 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              {(Object.keys(localeLabels) as string[]).map((loc) => (
+              {(Object.keys(localeLabels) as Lang[]).map((loc) => (
                 <DropdownMenuItem
                   key={loc}
-                  onClick={() => setLang(loc as "en" | "kh")}
+                  onClick={() => setLang(loc)}
                   className={lang === loc ? "bg-accent" : ""}
                 >
                   <span className="mr-2">{localeLabels[loc].flag}</span>

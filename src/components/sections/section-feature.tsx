@@ -1,6 +1,8 @@
-import React from 'react';
-import { Box, Lock, Sparkles, Settings, Search } from 'lucide-react';
+import React from "react";
+import { Box, Lock, Sparkles, Settings, Search } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
+import { useTranslation, type TranslationKey } from "@/lib/i18n";
 
 interface FeatureCardProps {
   icon: React.ReactNode;
@@ -20,22 +22,20 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   hasGradientBorder = false,
 }) => {
   return (
-    <Card className={`
-      relative bg-white border border-gray-200 
-      hover:shadow-lg transition-shadow duration-300 
-      ${isTall ? 'row-span-2' : ''} 
-      ${className}
-    `}>
-      <CardContent className="p-8">
+    <Card
+      className={cn(
+        "relative h-full max-w-none bg-white border border-gray-200",
+        "hover:shadow-lg transition-shadow duration-300",
+        isTall && "md:row-span-2",
+        className,
+      )}
+    >
+      <CardContent className="p-8 h-full">
         <div className="w-11 h-11 border-[1.5px] border-gray-300 rounded-lg flex items-center justify-center mb-6 text-gray-700">
           {icon}
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-3">
-          {title}
-        </h3>
-        <p className="text-sm text-gray-500 leading-relaxed">
-          {description}
-        </p>
+        <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
+        <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
       </CardContent>
       {hasGradientBorder && (
         <div className="absolute bottom-0 left-8 right-8 h-[3px] rounded-sm bg-gradient-to-r from-pink-400 via-yellow-400 to-emerald-400" />
@@ -44,49 +44,63 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   );
 };
 
+const FEATURES: {
+  icon: React.ReactNode;
+  titleKey: TranslationKey;
+  descKey: TranslationKey;
+  isTall?: boolean;
+  hasGradientBorder?: boolean;
+}[] = [
+  {
+    icon: <Box className="w-5 h-5" />,
+    titleKey: "feature.lessonsTitle",
+    descKey: "feature.lessonsDesc",
+  },
+  {
+    icon: <Lock className="w-5 h-5" />,
+    titleKey: "feature.techTitle",
+    descKey: "feature.techDesc",
+    isTall: true,
+  },
+  {
+    icon: <Sparkles className="w-5 h-5" />,
+    titleKey: "feature.usersTitle",
+    descKey: "feature.usersDesc",
+    hasGradientBorder: true,
+  },
+  {
+    icon: <Settings className="w-5 h-5" />,
+    titleKey: "feature.abilityTitle",
+    descKey: "feature.abilityDesc",
+  },
+  {
+    icon: <Search className="w-5 h-5" />,
+    titleKey: "feature.subjectsTitle",
+    descKey: "feature.subjectsDesc",
+  },
+];
+
 export const SectionFeature: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-8">
-      <div className="bg-gray-50 rounded-3xl p-10 max-w-6xl w-full">
-        <div className="grid grid-cols-3 gap-6">
-          {/* Column 1, Row 1 */}
-          <FeatureCard
-            icon={<Box className="w-5 h-5" />}
-            title="ពិពីកមេរៀន"
-            description="ការរនពីគីតាបេឡង់នៃការសរសេរ គ្រប់ទំព័រនៃពួកសរសេរមិនគិត ជាអត្ថបទអំណានទេ - Patricia Reilly Giff"
-          />
-
-          {/* Column 2, Row 1-2 (tall card) */}
-          <FeatureCard
-            icon={<Lock className="w-5 h-5" />}
-            title="សមយល់ពីបចចេកវិទ្យាថ្មីៗ"
-            description="បច្ចេកវិទយាថ្មីៗ តែងតែមានការប្ែប្រួល និង អភិវឌ្ន៍យ៉ាងឆាប់រហ័សជារងរាល់ឆ្នាំ។"
-            isTall
-          />
-
-          {/* Column 3, Row 1 */}
-          <FeatureCard
-            icon={<Sparkles className="w-5 h-5" />}
-            title="អ្នកប្រើបរាស់ 400+"
-            description="កំពុងកីតាបាស់ផ្លែយលូកដល់បច្ចុប្ន្ននេះ យើងមានអ្នកប្ើប្ាស់ជាច្ើនលើពីកីតាបាស់និងទុក។"
-            hasGradientBorder
-          />
-
-          {/* Column 1, Row 2 */}
-          <FeatureCard
-            icon={<Settings className="w-5 h-5" />}
-            title="សេសរសមត្ថភាព"
-            description="កំពូលនៃការសាកលបដីយ ក្នុងតំបន់នៃលមិនបានសាកលបង - Micheal Jordan"
-          />
-
-          {/* Column 3, Row 2 */}
-          <FeatureCard
-            icon={<Search className="w-5 h-5" />}
-            title="គ្រប់មុខវិជ្ជា គ្រប់កម្រិតវិទ្យាល័យ"
-            description="មានគ្រប់មុខវិជ្ា និងកម្រិតវិទ្យាល័យជាច្រើនតាមបំណងរបស់សិស្ស។"
-          />
+    <section className="w-full max-w-6xl mx-auto p-4 md:p-8">
+      <div className="bg-gray-50 rounded-3xl p-6 md:p-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
+          {FEATURES.map((feature) => (
+            <FeatureCard
+              key={feature.titleKey}
+              icon={feature.icon}
+              title={t(feature.titleKey)}
+              description={t(feature.descKey)}
+              isTall={feature.isTall}
+              hasGradientBorder={feature.hasGradientBorder}
+            />
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
+
+export default SectionFeature;

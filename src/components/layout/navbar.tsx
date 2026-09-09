@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Locale } from "@/lib/i18n";
+import { type Locale } from "@/lib/i18n";
 
 interface NavT {
   home: string;
