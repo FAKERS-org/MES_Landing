@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Book, Library, Youtube, Laptop, Briefcase, TrendingUp } from "lucide-react";
+import { Book, Library, Video, Laptop, Briefcase, TrendingUp } from "lucide-react";
 
 // 1. Define the data structure
 interface InfoItem {
@@ -22,7 +22,7 @@ const cardData: InfoItem[] = [
     description: "รวบรวมหนังสือดีๆ กว่า 400 เล่มสำหรับนักอ่าน",
   },
   {
-    icon: Youtube,
+    icon: Video,
     title: "โควต้ายูทูบ",
     description: "คอนเทนต์และช่องยูทูบแนะนำสำหรับการศึกษา",
   },
