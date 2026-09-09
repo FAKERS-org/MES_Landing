@@ -84,8 +84,8 @@ export const SectionFeature: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="w-full max-w-6xl mx-auto p-4 md:p-8">
-      <div className="bg-gray-50 rounded-3xl p-6 md:p-10">
+    <section className="w-full bg-white rounded-3xl p-6 md:p-10">
+      <div>
         <div className="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6">
           {FEATURES.map((feature) => (
             <FeatureCard
